@@ -1,0 +1,10 @@
+# masaustu test ciktilari
+test/t_yonelim
+test/t_kup3b
+
+# derleme
+build/
+*.bin
+*.elf
+
+.DS_Store

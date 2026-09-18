@@ -1,0 +1,22 @@
+orientation-cube
+Copyright (C) 2026 Ahmet Efe Nezli (dwifk0 <ahmetefenezli@gmail.com>)
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU Affero General Public License, version 3 only, as
+published by the Free Software Foundation. See the LICENSE file.
+
+Documentation and images under docs/ and varlik/ are licensed under
+Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0).
+    https://creativecommons.org/licenses/by-sa/4.0/
+
+--------------------------------------------------------------------------
+Third-party components
+--------------------------------------------------------------------------
+
+Used but not redistributed here; each remains under its own license and its
+own copyright holders.
+
+  Arduino core for ESP32     LGPL-2.1
+  Adafruit GFX Library       BSD
+  Adafruit ST7735/ST7789     MIT
+  DFRobot_BMI160             MIT
