@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: AGPL-3.0-only
+# SPDX-License-Identifier: LicenseRef-dwifk0-All-Rights-Reserved
 # Masaustunde kosan birim testler — kart, ekran ve sensor gerekmez.
 BAYRAK = -std=c++17 -Wall -Wextra -Wpedantic -Werror -O1 -g
 CEK    = ../firmware/orientation_cube/src

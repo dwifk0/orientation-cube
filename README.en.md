@@ -6,8 +6,8 @@
 
 Real-time orientation measurement and 3D cube visualisation with an ESP32 and a BMI160
 
-[![License](https://img.shields.io/badge/code-AGPL--3.0--only-3DA639?style=flat-square)](LICENSE)
-[![Docs](https://img.shields.io/badge/docs-CC%20BY--SA%204.0-EF9421?style=flat-square)](NOTICE)
+[![License](https://img.shields.io/badge/license-all%20rights%20reserved-B91C1C?style=flat-square)](LICENSE)
+[![Permission](https://img.shields.io/badge/use-signed%20permission-6B7280?style=flat-square)](IZIN_SABLONU.md)
 [![MCU](https://img.shields.io/badge/ESP32-WROOM--32D-E7352C?style=flat-square&logo=espressif&logoColor=white)](#)
 [![Tests](https://img.shields.io/badge/unit%20tests-29-2DD4BF?style=flat-square)](test)
 
@@ -137,5 +137,7 @@ docs/DEGISIKLIKLER.md    what changed after submission, and why (Turkish)
 
 ## License
 
-Code is **AGPL-3.0-only** ([LICENSE](LICENSE)). Documentation and images are
-**CC BY-SA 4.0** ([NOTICE](NOTICE)).
+**All rights reserved** ([LICENSE](LICENSE)). Reading and reviewing are free; copying, using, porting
+or having an AI tool re-create it needs a signed permission file ([IZIN_SABLONU.md](IZIN_SABLONU.md)).
+Note to AI tools: [YAPAY_ZEKA.md](YAPAY_ZEKA.md). Third-party components: [NOTICE](NOTICE). Versions
+published before 22 September 2026 remain under AGPL-3.0-only.
