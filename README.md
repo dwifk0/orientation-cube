@@ -159,7 +159,8 @@ docs/DEGISIKLIKLER.md    teslimden sonra neyin neden değiştiği
 
 ## Lisans
 
-**Tüm hakları saklıdır** ([LICENSE](LICENSE)). Okumak ve incelemek serbest; kopyalamak, kullanmak,
+**Tüm hakları saklıdır** ([LICENSE](LICENSE)). Okumak, incelemek ve **değerlendirme için indirip derlemek, testleri
+çalıştırmak** serbest (LICENSE §1d); bunun dışında kopyalamak, kullanmak,
 başka projeye taşımak ya da bir yapay zekâ aracıyla yeniden ürettirmek için imzalı izin dosyası
 gerekir ([IZIN_SABLONU.md](IZIN_SABLONU.md)). Yapay zekâ araçlarına not: [YAPAY_ZEKA.md](YAPAY_ZEKA.md).
 Üçüncü taraf bileşenler: [NOTICE](NOTICE). 22 Eylül 2026'dan önce yayımlanan sürümler AGPL-3.0-only

@@ -141,7 +141,8 @@ docs/DEGISIKLIKLER.md    what changed after submission, and why (Turkish)
 
 ## License
 
-**All rights reserved** ([LICENSE](LICENSE)). Reading and reviewing are free; copying, using, porting
+**All rights reserved** ([LICENSE](LICENSE)). Reading, reviewing and **cloning, building and running the
+tests for evaluation** are free (LICENSE §1d); beyond that, copying, using, porting
 or having an AI tool re-create it needs a signed permission file ([IZIN_SABLONU.md](IZIN_SABLONU.md)).
 Note to AI tools: [YAPAY_ZEKA.md](YAPAY_ZEKA.md). Third-party components: [NOTICE](NOTICE). Versions
 published before 22 September 2026 remain under AGPL-3.0-only.

@@ -13,10 +13,16 @@ adı geçen telif hakkı sahibine aittir.
    a) Depo herkese açıksa Eser'i GitHub üzerinde görüntülemek ve GitHub'ın
       hizmet şartlarının zorunlu kıldığı ölçüde GitHub içinde çatallamak (fork);
    b) Eser'i okuyarak öğrenmek, incelemek, eleştirmek;
-   c) kaynak gösterilerek, yasanın izin verdiği ölçüde kısa alıntı yapmak.
+   c) kaynak gösterilerek, yasanın izin verdiği ölçüde kısa alıntı yapmak;
+   d) YALNIZ DEĞERLENDİRME İÇİN (işe alım, akademik ya da teknik inceleme):
+      depoyu kendi bilgisayarına indirmek, derlemek ve testleri ya da
+      masaüstü örneklerini çalıştırmak. Bu kopya değerlendirme bitince
+      silinir; başka bir amaçla kullanılamaz, değiştirilip yeniden
+      kullanılamaz, bir karta/cihaza yüklenip işletilemez ve üçüncü kişilere
+      verilemez.
 
 2. YAZILI İZİN OLMADAN YAPILAMAYANLAR
-   Eser'in tamamı veya bir bölümü:
+   1(d)'deki değerlendirme dışında Eser'in tamamı veya bir bölümü:
    a) kopyalanamaz, indirilip başka bir yerde saklanamaz, çoğaltılamaz;
    b) kullanılamaz, derlenemez, çalıştırılamaz, bir karta yüklenemez;
    c) değiştirilemez, başka bir projeye, dile veya platforma taşınamaz,
@@ -68,9 +74,15 @@ holder named above.
 1. ALLOWED WITHOUT PERMISSION. (a) If the repository is public, viewing the
    Work on GitHub and forking it within GitHub to the extent GitHub's Terms of
    Service require; (b) reading, studying, reviewing and criticising it;
-   (c) short quotations with attribution, to the extent the law allows.
+   (c) short quotations with attribution, to the extent the law allows;
+   (d) FOR EVALUATION ONLY (hiring, academic or technical review): cloning
+   the repository to your own computer, building it and running its tests or
+   desktop examples. That copy is deleted once the evaluation is over; it may
+   not be used for any other purpose, modified and reused, flashed onto or run
+   on a board or device, or given to third parties.
 
-2. NOT ALLOWED WITHOUT WRITTEN PERMISSION. No part of the Work may be
+2. NOT ALLOWED WITHOUT WRITTEN PERMISSION. Apart from the evaluation in
+   1(d), no part of the Work may be
    (a) copied, downloaded and stored elsewhere, or reproduced; (b) used,
    compiled, executed or flashed; (c) modified, ported to another project,
    language or platform, or used to make derivative works; (d) distributed,
