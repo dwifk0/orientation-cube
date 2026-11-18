@@ -41,7 +41,12 @@ void Suzgec::guncelle(int16_t gx, int16_t gy, int16_t gz,
     const float wz = ((float)gz - bias.z()) / JIRO_LSB;
 
     // Jiroskop entegrasyonu — kisa vadede dogru, uzun vadede kayar
-    const float jiro_pitch = pitch_ + wx * dt;
+    // ⚠ Isaret: BMI160 sag el eksen takiminda X etrafinda +phi donuste ay = +sin(phi)
+    // olur; ivme_pitch() atan2(-ay, az) ile bunu -phi diye gosteriyor (ekran
+    // yonu kartta deneyerek secildi, PROJE_RAPORU). Jiroskop ayni yone
+    // integre edilmezse iki terim birbirine karsi calisir: egimde aci once
+    // ters yone gider, sonra yavasca dogruya surunur (18 Kas 2026 bulundu).
+    const float jiro_pitch = pitch_ - wx * dt;
     const float jiro_roll  = roll_  + wy * dt;
     const float jiro_yaw   = yaw_   - wz * dt;   // isaret: montaj yonu
 

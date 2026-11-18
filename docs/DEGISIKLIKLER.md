@@ -11,7 +11,7 @@ bu revizyon davranışı korurken yapıyı ve birkaç gerçek kusuru düzeltiyor
 
 `src/` altındaki iki modül `Wire`, `SPI`, `tft` ya da `millis` çağırmıyor —
 ham sensör verisi ve geçen süre parametre olarak geliyor. Sonuç: **aynı kod hem
-ESP32'de koşuyor hem masaüstünde test ediliyor.** 28 birim test kartsız çalışıyor.
+ESP32'de koşuyor hem masaüstünde test ediliyor.** 35 birim test kartsız çalışıyor.
 
 ## 2. Düzeltilen gerçek kusurlar
 
@@ -33,7 +33,7 @@ bir taban değeriyle korundu; test bunu ayrıca doğruluyor.
 
 **Sihirli sayılar adlandırıldı.** `57.2958`, `0.0174533`, `131.2`, `16384.0`
 artık `RAD_DERECE`, `DERECE_RAD`, `JIRO_LSB`, `IVME_LSB`. İkisinin nereden
-geldiği (`32768/250`, `32768/2`) başlıkta yazılı.
+geldiği (±2000 °/s için `32768/2000` = 16,4; ±2 g için `32768/2`) başlıkta yazılı.
 
 **Δt koruması genişletildi.** Orijinalde yalnız `dt > 0.1` kontrol ediliyordu;
 `dt == 0` (aynı milisaniyede iki okuma) durumu açıkta kalıyordu. İkisi de aynı
@@ -83,3 +83,22 @@ doğrulanamaz. Orijinaldeki haritalama korundu.
 [`PROJE_RAPORU.md`](PROJE_RAPORU.md) içindeki "Hazırlayanlar" satırı ve HUD'daki
 ikinci isim, izin alınmış olarak kaldırıldı. Yeni kodda HUD'da isim hiç yok —
 ekran alanı açı göstergelerine kaldı.
+
+## Pitch ekseninde işaret çelişkisi (18 Kas 2026)
+
+Bağımsız bir inceleme, pitch ekseninde jiroskop ile ivmeölçerin **zıt yönlere**
+baktığını buldu. BMI160'ın sağ el eksen takımında X etrafında +φ dönüşte
+`ay = +sin φ` olur. `ivme_pitch()` bunu `atan2(-ay, az)` ile −φ olarak
+gösteriyor (ekran yönü kartta deneyerek seçilmişti), ama jiroskop `+wx` ile
++φ yönüne integre ediliyordu. Tamamlayıcı filtrede iki terim birbirine karşı
+çalışıyor: eğimde açı önce yanlış yöne gidiyor, sonra yavaşça doğruya
+sürünüyor. Ölçek hatası ve çarpan bunu gölgede bırakmıştı.
+
+**Düzeltme:** jiroskop terimi `pitch − wx·dt` oldu; ekran yönü (ivmeölçerin
+belirlediği kalıcı açı) değişmedi. Roll ekseninde işaretler zaten tutarlıydı.
+Yeni bir test fiziksel bir eğimi taklit ediyor (1 s'de 30°, sonra bekleme) ve
+dönüş biter bitmez açının ivmeölçerle aynı yerde olduğunu iki eksen için de
+denetliyor. Eski kodla bu test kırılıyor.
+
+⚠ **Kart üzerinde henüz denenmedi.** Doğrulama: kartı 30° eğip 3 s tut; ekrandaki
+küp eğim sırasında ters yöne kaçmadan doğrudan son açıya gitmeli.

@@ -62,8 +62,12 @@ The full reasoning and the other fixes (a watchdog reset, an unguarded
 perspective divisor, filter state being read back from a cross-core shared
 variable) are in [`docs/DEGISIKLIKLER.md`](docs/DEGISIKLIKLER.md) (Turkish).
 
-> ⚠ The scale fix is verified against the library source and by calculation.
-> **It has not been run on the board yet.**
+The pitch axis also had the gyro and the accelerometer pointing in opposite
+directions, so the two terms of the filter fought each other. The gyro term was
+fixed and a "tilt and hold" consistency test now covers both axes.
+
+> ⚠ The scale and sign fixes are verified against the library source and by
+> calculation. **They have not been run on the board yet.**
 
 ## Hardware
 

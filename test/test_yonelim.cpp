@@ -49,7 +49,7 @@ int main() {
     {
         Bias b; b.bitir();                       // kalibrasyon YOK
         Suzgec s(a);
-        for (int i = 0; i < 400; i++) s.guncelle(64, 0, 0, 0, 0, DUZ_AZ, b, 0.01f);
+        for (int i = 0; i < 400; i++) s.guncelle(-64, 0, 0, 0, 0, DUZ_AZ, b, 0.01f);
         // 🔴 BEKLENMEYEN AMA DOGRU SONUC: kalibrasyon olmasa bile aci
         // SINIRSIZ kaymiyor. Tamamlayici filtre onu sabit bir kalici hataya
         // oturtuyor:  x* = alfa*w*dt / (1-alfa)
@@ -64,7 +64,7 @@ int main() {
         Bias b; b.bitir();
         Ayar saf{1.0f, 0.1f, 0.05f};
         Suzgec s(saf);
-        for (int i = 0; i < 400; i++) s.guncelle(64, 0, 0, 0, 0, DUZ_AZ, b, 0.01f);
+        for (int i = 0; i < 400; i++) s.guncelle(-64, 0, 0, 0, 0, DUZ_AZ, b, 0.01f);
         t::dogru("saf jiroskopta drift sinirsiz buyur", s.pitch() > 10.0f);
     }
 
@@ -79,7 +79,7 @@ int main() {
         Ayar saf{1.0f, 0.1f, 0.05f};             // tamamen jiroskop
         Suzgec s(saf);
         // 16,4 ham deger = 1 derece/s. 1 saniye boyunca -> 1 derece.
-        for (int i = 0; i < 100; i++) s.guncelle(164, 0, 0, 0, 0, DUZ_AZ, b, 0.01f);
+        for (int i = 0; i < 100; i++) s.guncelle(-164, 0, 0, 0, 0, DUZ_AZ, b, 0.01f);
         t::dogru("164 ham ~ 10 derece/s -> 1 s'de 10 derece",
                  yakin(s.pitch(), 10.0f, 0.1f));
     }
@@ -89,12 +89,12 @@ int main() {
         Bias b; b.bitir();
         Suzgec s(a);
         // Cihaz DUZ duruyor ama jiroskop sabit bir yalan sutunu basiyor.
-        for (int i = 0; i < 2000; i++) s.guncelle(200, 0, 0, 0, 0, DUZ_AZ, b, 0.01f);
+        for (int i = 0; i < 2000; i++) s.guncelle(-200, 0, 0, 0, 0, DUZ_AZ, b, 0.01f);
         const float suzgecli = s.pitch();
 
         Ayar saf{1.0f, 0.1f, 0.05f};
         Suzgec s2(saf);
-        for (int i = 0; i < 2000; i++) s2.guncelle(200, 0, 0, 0, 0, DUZ_AZ, b, 0.01f);
+        for (int i = 0; i < 2000; i++) s2.guncelle(-200, 0, 0, 0, 0, DUZ_AZ, b, 0.01f);
 
         t::dogru("filtresiz drift cok daha buyuk", s2.pitch() > suzgecli * 3.0f);
         t::dogru("filtreli aci sinirli kaliyor", suzgecli < 5.0f);
@@ -116,12 +116,44 @@ int main() {
         Bias b; b.bitir();
         Ayar saf{1.0f, 0.1f, 0.05f};
         Suzgec s(saf);
-        s.guncelle(1640, 0, 0, 0, 0, DUZ_AZ, b, 5.0f);    // 100 derece/s, takilma: 5 s
+        s.guncelle(-1640, 0, 0, 0, 0, DUZ_AZ, b, 5.0f);    // 100 derece/s, takilma: 5 s
         t::dogru("asiri dt yedek degere cekildi", yakin(s.pitch(), 5.0f, 0.1f));
         // Korunmasaydi tek karede 500 derece firlardi.
         s.sifirla();
-        s.guncelle(1640, 0, 0, 0, 0, DUZ_AZ, b, 0.0f);
+        s.guncelle(-1640, 0, 0, 0, 0, DUZ_AZ, b, 0.0f);
         t::dogru("sifir dt de yedege duser", yakin(s.pitch(), 5.0f, 0.1f));
+    }
+
+    // ── jiroskop ve ivmeolcer AYNI yone mi bakiyor (fiziksel donus) ─────
+    // Gercek bir egimi taklit et: X (pitch) ya da Y (roll) etrafinda 1 s'de
+    // 30 dereceye don, 2 s bekle. Sag el takiminda X etrafinda +phi donuste
+    // ay=+sin(phi), az=cos(phi); Y etrafinda +theta donuste ax=-sin(theta).
+    // Isaretler tutarsizsa donus bitince aci dogru degerden uzakta kalir ve
+    // sonra yavasca ona surunur (18 Kas 2026'da pitch'te boyleydi).
+    for (int eksen = 0; eksen < 2; eksen++) {
+        Bias b; b.bitir();
+        Suzgec s(a);
+        const float hiz = 30.0f;                 // derece/s
+        float aci = 0.0f, donus_sonu = 0.0f;
+        for (int i = 0; i < 300; i++) {
+            const bool donuyor = i < 100;
+            if (donuyor) aci += hiz * 0.01f;
+            const float r = aci / RAD_DERECE;
+            const int16_t g = donuyor ? (int16_t)(hiz * JIRO_LSB) : 0;
+            const int16_t ax = eksen ? (int16_t)(-sinf(r) * IVME_LSB) : 0;
+            const int16_t ay = eksen ? 0 : (int16_t)( sinf(r) * IVME_LSB);
+            const int16_t az = (int16_t)(cosf(r) * IVME_LSB);
+            s.guncelle(eksen ? 0 : g, eksen ? g : 0, 0, ax, ay, az, b, 0.01f);
+            if (i == 99) donus_sonu = eksen ? s.roll() : s.pitch();
+        }
+        const float hedef = eksen ? ivme_roll(-0.5f, 0, 0.866f) : ivme_pitch(0, 0.5f, 0.866f);
+        const float son = eksen ? s.roll() : s.pitch();
+        t::dogru(eksen ? "roll: donus bitince aci ivmeyle ayni yerde"
+                       : "pitch: donus bitince aci ivmeyle ayni yerde",
+                 yakin(donus_sonu, hedef, 1.5f));
+        t::dogru(eksen ? "roll: beklemede dogru aciya oturdu"
+                       : "pitch: beklemede dogru aciya oturdu",
+                 yakin(son, hedef, 0.5f));
     }
     return t::rapor("yonelim");
 }

@@ -60,8 +60,12 @@ Bütün hesap ve öbür düzeltmeler (watchdog reseti, korumasız perspektif pay
 filtre durumunun paylaşılan değişkenden geri okunması):
 [`docs/DEGISIKLIKLER.md`](docs/DEGISIKLIKLER.md).
 
-> ⚠ Ölçek düzeltmesi kütüphane kaynağından ve hesapla doğrulandı. **Kart
-> üzerinde henüz denenmedi.**
+Ayrıca pitch ekseninde jiroskop ile ivmeölçerin işaretleri zıttı; filtrede
+birbirine karşı çalışıyorlardı. Jiroskop terimi düzeltildi ve iki eksen için
+"eğ ve bekle" tutarlılık testi eklendi.
+
+> ⚠ Ölçek ve işaret düzeltmeleri kütüphane kaynağından ve hesapla doğrulandı.
+> **Kart üzerinde henüz denenmedi.**
 
 ## Donanım
 
