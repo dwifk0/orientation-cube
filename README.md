@@ -157,6 +157,13 @@ docs/PROJE_RAPORU.md     dersin teslim edilen raporu: algoritmalar, sorunlar, ç
 docs/DEGISIKLIKLER.md    teslimden sonra neyin neden değiştiği
 ```
 
+## Yapay zekâ kullanımı
+
+Teslim sonrası yeniden düzenleme (modüllere bölme), birim testleri ve bu
+belgeler yapay zekâ destekli yazıldı; ölçek ve işaret hataları da bu süreçte
+bulundu. Devre, montaj, ilk firmware ve ders teslimi bana aittir. Düzeltmeler
+hesapla ve testle doğrulandı, **kartta henüz denenmedi**.
+
 ## Lisans
 
 **Tüm hakları saklıdır** ([LICENSE](LICENSE)). Okumak, incelemek ve **değerlendirme için indirip derlemek, testleri

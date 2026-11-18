@@ -139,6 +139,14 @@ docs/PROJE_RAPORU.md     the submitted course report (Turkish)
 docs/DEGISIKLIKLER.md    what changed after submission, and why (Turkish)
 ```
 
+## Use of AI
+
+The post-submission refactor (splitting into modules), the unit tests and these
+documents were written with AI assistance; the scale and sign bugs were found
+during that work. The circuit, assembly, the original firmware and the course
+submission are mine. The fixes are verified by calculation and tests, **not yet
+on the board**.
+
 ## License
 
 **All rights reserved** ([LICENSE](LICENSE)). Reading, reviewing and **cloning, building and running the

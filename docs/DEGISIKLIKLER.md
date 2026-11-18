@@ -70,10 +70,10 @@ ve orijinal haritalama korundu.
 ## 4. Bilerek dokunmadıklarım
 
 **Her karede tam ekran temizleme.** `fillScreen` + yeniden çizim titremeye yol
-açıyor; `f6.ino`'da denediğin fark tabanlı çizim (`prevProjected`) bunu
-azaltıyordu ama dolu yüzeylerle birlikte çalışmıyor. Doğru çözüm belgede de
-yazdığın **çift tamponlama** (128×128×2 = 32 KB, ESP32'de mümkün). Bu bir
-geliştirme, bir düzeltme değil — sen karar ver.
+açıyor; `f6.ino`'da denenen fark tabanlı çizim (`prevProjected`) bunu
+azaltıyordu ama dolu yüzeylerle birlikte çalışmıyor. Doğru çözüm proje
+raporunda da yazan **çift tamponlama** (128×128×2 = 32 KB, ESP32'de mümkün). Bu
+bir geliştirme, bir düzeltme değil; açık madde olarak duruyor.
 
 **Eksen haritalaması ve işaretler.** Montaj yönüne bağlı; kart elde olmadan
 doğrulanamaz. Orijinaldeki haritalama korundu.
