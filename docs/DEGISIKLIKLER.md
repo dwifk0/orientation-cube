@@ -11,7 +11,7 @@ bu revizyon davranışı korurken yapıyı ve birkaç gerçek kusuru düzeltiyor
 
 `src/` altındaki iki modül `Wire`, `SPI`, `tft` ya da `millis` çağırmıyor —
 ham sensör verisi ve geçen süre parametre olarak geliyor. Sonuç: **aynı kod hem
-ESP32'de koşuyor hem masaüstünde test ediliyor.** 35 birim test kartsız çalışıyor.
+ESP32'de koşuyor hem masaüstünde test ediliyor.** 33 birim test kartsız çalışıyor.
 
 ## 2. Düzeltilen gerçek kusurlar
 
